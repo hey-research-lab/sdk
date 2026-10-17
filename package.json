@@ -1,0 +1,37 @@
+{
+  "name": "@resu/sdk",
+  "version": "0.1.0",
+  "description": "Zero-dependency TypeScript SDK for the Resu protocol — read pool state and build transactions for tranched vaults, baskets, index baskets, and USDC zaps.",
+  "license": "MIT",
+  "type": "module",
+  "types": "./dist/index.d.ts",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "src",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "keywords": [
+    "resu",
+    "defi",
+    "tranches",
+    "ethereum",
+    "base",
+    "arbitrum"
+  ],
+  "sideEffects": false,
+  "devDependencies": {
+    "typescript": "^5.6.0"
+  }
+}
