@@ -1,5 +1,5 @@
 {
-  "name": "@resu/sdk",
+  "name": "@resufi/sdk",
   "version": "0.1.0",
   "description": "Zero-dependency TypeScript SDK for the Resu protocol — read pool state and build transactions for tranched vaults, baskets, index baskets, and USDC zaps.",
   "license": "MIT",

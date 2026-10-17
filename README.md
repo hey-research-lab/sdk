@@ -1,9 +1,15 @@
-# @resu/sdk
+# @resufi/sdk
 
-Zero-dependency TypeScript SDK for the [Resu protocol](../resu-docs) — risk-graded
+[![npm version](https://img.shields.io/npm/v/@resufi/sdk.svg)](https://www.npmjs.com/package/@resufi/sdk)
+[![npm downloads](https://img.shields.io/npm/dm/@resufi/sdk.svg)](https://www.npmjs.com/package/@resufi/sdk)
+[![license](https://img.shields.io/npm/l/@resufi/sdk.svg)](./LICENSE)
+
+Zero-dependency TypeScript SDK for the [Resu protocol](https://resufi.github.io/fe) — risk-graded
 (tranched) vaults on EVM chains. Read pool state over any RPC and build unsigned
 transactions you sign with **whatever wallet library you already use** (viem,
 ethers, web3, or raw JSON-RPC).
+
+**📦 npm:** [`@resufi/sdk`](https://www.npmjs.com/package/@resufi/sdk)
 
 - **No dependencies.** Reads go over `fetch` + Multicall3; writes are plain
   `{ to, data, value }` objects.
@@ -11,14 +17,32 @@ ethers, web3, or raw JSON-RPC).
 - **Covers** the vaults (deposit / withdraw / claim), one-click profiles, index
   baskets, and USDC zaps (via LI.FI, no API key).
 
+## Installation
+
+Published on npm as **[`@resufi/sdk`](https://www.npmjs.com/package/@resufi/sdk)**.
+
 ```bash
-npm install @resu/sdk
+npm install @resufi/sdk
+#   or
+pnpm add @resufi/sdk
+#   or
+yarn add @resufi/sdk
+#   or
+bun add @resufi/sdk
+```
+
+**Requirements.** Node ≥ 18 (for a global `fetch`) or any modern browser. On
+Node < 18, pass a `fetch` implementation: `new ResuClient({ fetch })`. The
+package ships ESM with bundled TypeScript types — no `@types/*` needed.
+
+```ts
+import { ResuClient, getPool, readVault } from "@resufi/sdk";
 ```
 
 ## Quick start
 
 ```ts
-import { ResuClient, getPool, readVault, readPosition, approve, deposit, formatUnits } from "@resu/sdk";
+import { ResuClient, getPool, readVault, readPosition, approve, deposit, formatUnits } from "@resufi/sdk";
 
 const resu = new ResuClient(); // default public RPCs; override per chain below
 const pool = getPool("base-nvda");
@@ -63,7 +87,7 @@ Tier index is fixed: `0` Junior, `1` Middle, `2` Senior.
 
 ```ts
 import { ResuClient, getPool, readVault, readPosition, sharePrice,
-         approve, deposit, requestWithdrawal, claim } from "@resu/sdk";
+         approve, deposit, requestWithdrawal, claim } from "@resufi/sdk";
 
 const resu = new ResuClient();
 const pool = getPool("base-nvda");
@@ -91,7 +115,7 @@ A fixed blend of the three tiers of one asset, as a single token. Deposit one
 asset; redemption returns the tier tokens **in kind** (pro-rata).
 
 ```ts
-import { PROFILES, getProfile, readProfile, approveProfile, depositProfile, redeemProfile } from "@resu/sdk";
+import { PROFILES, getProfile, readProfile, approveProfile, depositProfile, redeemProfile } from "@resufi/sdk";
 
 const p = getProfile("base-nvda-balanced"); // blend [20, 30, 50] (jr/ml/sr)
 await readProfile(resu, p);                  // { sharePrice, totalValueUsd, totalSupply }
@@ -107,7 +131,7 @@ One tier spread across several assets (e.g. Senior over MSFT + NVDA). Deposit is
 **per leg** — one amount per asset, zero to skip a leg.
 
 ```ts
-import { getIndex, readIndex, approveIndexLeg, depositIndex, redeemIndex } from "@resu/sdk";
+import { getIndex, readIndex, approveIndexLeg, depositIndex, redeemIndex } from "@resufi/sdk";
 
 const x = getIndex("base-shield"); // rSHLD: Senior across [MSFT, NVDA]
 await readIndex(resu, x);
@@ -124,7 +148,7 @@ The pool asset is rarely USDC. A zap swaps USDC into the underlying via LI.FI
 (no API key), then you deposit what the swap **actually returned**.
 
 ```ts
-import { quoteZap, readUsdcAllowance, approveUsdc, readTokenBalance, depositProfile, getProfile } from "@resu/sdk";
+import { quoteZap, readUsdcAllowance, approveUsdc, readTokenBalance, depositProfile, getProfile } from "@resufi/sdk";
 
 const p = getProfile("base-nvda-balanced");
 const taker = "0xYourAddress";

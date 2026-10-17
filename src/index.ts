@@ -1,5 +1,5 @@
 /**
- * @resu/sdk — zero-dependency TypeScript SDK for the Resu protocol.
+ * @resufi/sdk — zero-dependency TypeScript SDK for the Resu protocol.
  *
  * Read pool state over any RPC and build unsigned transactions you sign with
  * whatever wallet library you already use (viem, ethers, web3, or raw). The SDK
