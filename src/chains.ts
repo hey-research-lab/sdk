@@ -11,7 +11,7 @@ export type ChainInfo = {
 export const CHAINS: Record<ChainId, ChainInfo> = {
 	base: { id: "base", chainId: 8453, rpc: "https://mainnet.base.org" },
 	arbitrum: { id: "arbitrum", chainId: 42161, rpc: "https://arbitrum.drpc.org" },
-	robinhood: { id: "robinhood", chainId: 42161, rpc: "" },
+	robinhood: { id: "robinhood", chainId: 4663, rpc: "https://rpc.mainnet.chain.robinhood.com" },
 	hyperevm: { id: "hyperevm", chainId: 999, rpc: "https://rpc.hyperliquid.xyz/evm" },
 	monad: { id: "monad", chainId: 143, rpc: "https://rpc.monad.xyz" },
 };
